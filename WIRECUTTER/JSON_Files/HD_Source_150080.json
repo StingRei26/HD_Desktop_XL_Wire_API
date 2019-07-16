@@ -1,0 +1,44 @@
+{
+    "data": [
+        {
+            "id": "150080",
+            "type": "sources",
+            "attributes": {
+                "country_id": "usa",
+                "product_id": "21210",
+                "affiliate_id": "18",
+                "notes": "",
+                "created_at": "2018-11-23T04:47:06+00:00",
+                "last_modified": "2019-07-14T20:06:03+00:00",
+                "active": true,
+                "button_details": "",
+                "url": "https://www.homedepot.com/p/Bosch-300-Series-Front-Control-Tall-Tub-Dishwasher-in-Stainless-Steel-with-Stainless-Steel-Tub-and-3rd-Rack-44dBA-SHEM63W55N/304644690",
+                "api_source": "diffbot",
+                "sku": "1003054519",
+                "store": "Home Depot",
+                "merchant_id": "485",
+                "price": {
+                    "raw": 76410,
+                    "raw_formatted": "$764.10",
+                    "formatted": "$764",
+                    "currency": "USD"
+                },
+                "initial_price": {
+                    "raw": 76400,
+                    "raw_formatted": "$764.00",
+                    "formatted": "$764",
+                    "currency": "USD"
+                },
+                "availability": 1,
+                "availability_status": "In Stock",
+                "availability_text": "",
+                "vendor_id": "product|3|1798072689",
+                "order": 2,
+                "value_add": ""
+            },
+            "links": {
+                "self": "https://phoenix.submarineleisureclub.com/api/1.0/sources/150080"
+            }
+        }
+    ]
+}

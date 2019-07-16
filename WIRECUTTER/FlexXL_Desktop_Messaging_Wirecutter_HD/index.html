@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8"/>
+	<title>HTML5 Responsive Rich Media Banner</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0" />
+	<script type="text/javascript" src="http://ds.serving-sys.com/BurstingScript/adKit/adkit.js"></script>
+
+	<!-- COMMENT THIS LINE OUT PRIOR TO UPLOADING / UNCOMMENT FOR LOCAL TESTING ONLY -->
+<script type="text/javascript" src="scripts/localPreview.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+
+<style id="adStyles">
+
+/* ------------------------------------------------------------ */
+/* -----> RESET.CSS INCLUDED HERE TO REDUCE SERVER CALLS <----- */
+/* ------------------------------------------------------------ */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, hr, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figure, figcaption, hgroup, menu, footer, header, nav, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; } article, aside, canvas, figure, figure img, figcaption, hgroup, footer, header, nav, section, audio, video { display: block; } a img {border: 0;}
+
+/* --------------------------------------------- */
+/* -----> FONT IMPORTS PER REFERENCE FILE <----- */
+/* --------------------------------------------- */
+@import url(https://fast.fonts.net/t/1.css?apiType=ad&projectid=21dfec3a-67e2-4918-9142-bfaf8a92f03f);
+  @font-face{font-family:"Proxima N W01 Reg";
+  src:url(https://apiadn.fonts.com/v2/fonts/subset?x=aEQPPHegxpcMofj1Jp1tYXKqiOi9p687nKTqLsOq73tJQoR0ctMtTzsiZt8wVkyywZljis6XqhTOA87xBh2gII4u354RCpSLWvyOsTpDWSwYqZebhMSWmmB1fRC4gv4mw%2bgNckgkXbWXsUdbthhC8DaHdyfU7SRnJWmmYlaPg8E%3d);
+  src:url(https://apiadn.fonts.com/v2/fonts/subset?x=aEQPPHegxpcMofj1Jp1tYXKqiOi9p687nKTqLsOq73tJQoR0ctMtTzsiZt8wVkyywZljis6XqhTOA87xBh2gII4u354RCpSLWvyOsTpDWSwYqZebhMSWmmB1fRC4gv4mw%2bgNckgkXbWXsUdbthhC8DaHdyfU7SRnJWmmYlaPg8E%3d#iefix) format("eot"),url(https://apiadn.fonts.com/v2/fonts/subset?x=bnlTGL%2flyERMvMB5KGT1XBXveOQr4%2f%2bsI8BXrDMbjKe%2fF%2fL%2bj0ydN4duUIuaJlKXIIeTW0CRI%2fxdcolu2oF2vGuxRdnwi3evMn0sJDUojwrNdOaEOnIGgnsirqykyQ5WF7nSFsayiEBjIUQedsS%2ftSfTxGgByozSb5GNszYPHG8%3d) format("woff2"),url(https://apiadn.fonts.com/v2/fonts/subset?x=7lOozVx17sBSzsSHZRAsBC1QzJejLKkoqlkZJJA7s5wDJrO6eUaNgLBUCc3UDRmiWlHxWEy%2bHKcjWobUn06eTgU7LoeE7jT8pPX35hzyd2hUVGY3c%2fV7UCJBagiDRKvps9xb6oxPVgoBNrCrFuuDCGuYWsPDI0cUA7DsHslAy6o%3d) format("woff"),url(https://apiadn.fonts.com/v2/fonts/subset?x=YdU1Gas3Kn1GLOFex%2fIYiPq%2fAYSzutipKMkVmBE2Aiv46sUG8HgSPatrkyifHCf7eJaVv1qkqX6BQCC8Sq3HcRN2tMuoqzgXV%2bBJ4wTSScRK9XVKhCeDCO2TGwwWiHBWJmJxF7X0timAIhkGq8v%2bDQvO02r3FUEnxmQpNDF0w%2fQ%3d) format("truetype")}
+  @font-face{font-family:"Proxima N W02 Bold";
+  src:url(https://apiadn.fonts.com/v2/fonts/subset?x=3m9sZXQqzMRmVlycd6e8QzKwa6vl4y002J4aBR1aKDSyu2Ocz0RsIiawLUEx5xq56KII8cd2WTai5kabaKAkw7oG4uv9a6fJ1gv533XGp3H9kzQik0Je2ND%2fvD%2bZVkl6kETg4NsfrV4NHWrsLDP5hiiYHLMFm2k3GpQboFeQcmU%3d);
+  src:url(https://apiadn.fonts.com/v2/fonts/subset?x=3m9sZXQqzMRmVlycd6e8QzKwa6vl4y002J4aBR1aKDSyu2Ocz0RsIiawLUEx5xq56KII8cd2WTai5kabaKAkw7oG4uv9a6fJ1gv533XGp3H9kzQik0Je2ND%2fvD%2bZVkl6kETg4NsfrV4NHWrsLDP5hiiYHLMFm2k3GpQboFeQcmU%3d#iefix) format("eot"),url(https://apiadn.fonts.com/v2/fonts/subset?x=1jA8a6kaT0NuM7%2bf3PrZlFxldvUathMnC%2f592lbImbxX%2bOOLy907FNTWTVYORp7aeZJX%2btakG%2f%2fq0iQx0DcUwTKZzUUBh4qngYv0%2fYfQFtZIqulpn%2bAo3nzeRj06oxR0Q%2fkhqK4Bf9x9V2Op18nDmDRhuvxT3Q1IZdk1FjfIpQk%3d) format("woff2"),url(https://apiadn.fonts.com/v2/fonts/subset?x=nzdUhcdHlj0pVBSBB89zTJ0%2fCPooMF5f5g8qZykOr91eS1u37i6ARGaTPm%2fj5Cq1AH6duCKKlhibgGZWaf3NzJ6jHFPFziUNo4fjXJqpJpRncwALwwvDbYPsJPEE9QGFigqBAmcOr8ev2E6jZZw7sIhuxg6xhyrf16kPX0b4jVY%3d) format("woff"),url(https://apiadn.fonts.com/v2/fonts/subset?x=KPD8T4ogq%2bRh4h2g11CLb%2b3Y%2fhJq8zFkyeIAzOe5sxmw1hm1gPgZXzeSGjeaBYPzKsAN4x9wHKYrI1EARYHn7zFO1EMrgMI%2fgV0BmmzJWxR2ILwhNs1lt%2b2Oyh1tFejS8rPCR5IjRxz8MOrmgtX3MV%2bK1RsAj0G3VrVZ2BEh9As%3d) format("truetype")}
+  @font-face{font-family:"Proxima N W02 Smbd";
+  src:url(https://apiadn.fonts.com/v2/fonts/subset?x=wt0z0ND%2fdjdWsmIUOO6vXq1qtPwCMYyUOGnyXvVBJ4eB%2f4iajAbNUvXJ13ifoOJCpMq28VCdpA1IcuurYjN5h9gemMTpvwhW8JlYNvNvdwyxpA1JJhvIgSEntpbeP9ydHsDLNL5lzqf5Wm3dURpTnx5ZFNVlS7%2bUCdOXz9WA84k%3d);
+  src:url(https://apiadn.fonts.com/v2/fonts/subset?x=wt0z0ND%2fdjdWsmIUOO6vXq1qtPwCMYyUOGnyXvVBJ4eB%2f4iajAbNUvXJ13ifoOJCpMq28VCdpA1IcuurYjN5h9gemMTpvwhW8JlYNvNvdwyxpA1JJhvIgSEntpbeP9ydHsDLNL5lzqf5Wm3dURpTnx5ZFNVlS7%2bUCdOXz9WA84k%3d#iefix) format("eot"),url(https://apiadn.fonts.com/v2/fonts/subset?x=u0tNb2sdJWaRi%2b4hqjxTTzB%2f8nmJQt%2fEcqOKtiV67VzasOTDgXCQ28zU9bRO5OVdCaAk7C5I8f7deeHeQaJVF%2fiWMjvuE%2bKVdtojR4VDuYjlNLbN3In%2beBBhYbXSyKtrOmnyG6lk2KMvgTYJ24bq1WHVqYmVb7FoOeD7I1LfGrw%3d) format("woff2"),url(https://apiadn.fonts.com/v2/fonts/subset?x=cXybx6EtjJgxMPFEs3rQmqRA6uTaSI2YrmI6040oS2qN3%2b6%2fhJvSMeO9IdbyhhWh5%2btjwBBYmxHZJCBx4ssg5FYCsr4WWtTWolGFbA6L%2fEqNXJrOnLSidhERjEKmkDvjHlA1Tx87zuqlLhgpEradmeTJ6bY0TXQ6IdTxR3vu6p4%3d) format("woff"),url(https://apiadn.fonts.com/v2/fonts/subset?x=PJsSGUv6%2fUtao1%2bt4ykLCOIhXuvQSsoAfnsxkh0ro3loHePTLvUYqPRKrFAo4DvV9MfRfkMbBmM4UVJ%2fGv8BmGAVOLM8GaKUG%2fKGKiKx5NzZItP1NM9na%2bxyBpSQlZl9LZ75ZLApPwXorbxxMQk6GOW%2fp3qGn6Nee0Cbu1kyhDg%3d) format("truetype")}
+
+/* ------------------------------------------------------------------- */
+/* -----> BODY STYLE TO PREVENT FONT SCALLING ON MOBILE DEVICES <----- */
+/* ------------------------------------------------------------------- */
+body{
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-text-size-adjust: none;
+	zoom: 100%;
+}
+
+/* --------------------- */
+/* -----> GENERAL <----- */
+/* --------------------- */
+#adWrapper{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	-moz-user-select: -moz-none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	visibility: hidden;
+	opacity: 0;
+}
+
+/* ------------------------------- */
+/* -----> MAIN CONTENT AREA <----- */
+/* ------------------------------- */
+#adContainer{
+	width: 100%;
+	min-width: 705px;
+	height: 600px;
+	max-width: 1125px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+	background-color: #FFF;
+	cursor: pointer;
+	font-family: "Proxima N W01 Reg";
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	overflow: hidden;
+	border:1px solid black; 
+}
+
+/* ------------------------ */
+/* -----> IMAGE AREA <----- */
+/* ------------------------ */
+#imageAreaContainer{
+	width: 600px;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-color: #909090;
+}
+
+#imageAreaBg{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	background-position: center;
+	background-size: cover;
+}
+
+/* -------------------------- */
+/* -----> CONTENT AREA <----- */
+/* -------------------------- */
+#contentAreaContainer{
+	width: calc(100% - 600px);
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 600px;
+	background: black;
+}
+
+#contentAreaPadBox{
+	width: calc(100% - 70px);
+	height: calc(100% - 70px);
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	margin: 35px;
+	pointer-events: none;
+}
+
+
+/* -----> CONTENT AREA - COPY <----- */
+#contentAreaHeadlineCopy{
+	color: #000000; /*placeholder*/
+	font-family: "Proxima N W02 Smbd";
+	font-size: 27px;
+	line-height: 29px;
+	/*padding-top: 70px;*/
+	pointer-events: auto;
+	display: none;
+	margin-top:104px;
+}
+
+#pagination{
+	position: absolute;
+	bottom: 10px;
+	right: 5px;
+	color: #000;
+}
+
+.italic-header{
+	font-style: italic;
+}
+
+#contentAreaDescriptorCopy{
+	color: #000000; /*placeholder*/
+	font-family: "Proxima N W01 Reg";
+	font-size: 18px;
+	line-height: 25px;
+	padding-top: 8px;
+	pointer-events: auto;
+	display: none;
+}
+
+#price {
+	color: white; /*placeholder*/
+	font-family: "Proxima N W01 Reg";
+	font-size: 18px;
+	line-height: 25px;
+	padding-top: 8px;
+	pointer-events: auto;
+}
+
+
+/* -----> CONTENT AREA - CTA <----- */
+#contentAreaCta{
+
+	left: 0px;
+	visibility: visible;
+}
+
+/* -------------------- */
+/* -----> BORDER <----- */
+/* -------------------- */
+.borderTop{
+	width: 100%;
+	height: 1px;
+	left: 0px;
+	top: 0px;
+}
+.borderLeft{
+	width: 1px;
+	height: 100%;
+	left: 0px;
+	top: 0px;
+}
+.borderRight{
+	width: 1px;
+	height: 100%;
+	right: 0px;
+	top: 0px;
+}
+.borderBottom{
+	width: 100%;
+	height: 1px;
+	left: 0px;
+	bottom: 0px;
+}
+.contentBorder{
+	position: absolute;
+	z-index: 99999;
+	display: none;
+}
+
+/* -------------------- */
+/* -----> SHARED <----- */
+/* -------------------- */
+.logo{
+	position: absolute;
+	top: 0px;
+	left: 0;	
+	width: auto;
+	height: 45px;
+	max-height: 45px;
+	max-width: 145px;
+	pointer-events: auto;
+}
+.logo img{
+	width: auto;
+    height: 46px;
+    max-height: 70px;
+    max-width: 145px;
+}
+
+.cta{
+	width: auto;
+	max-width: 198px;
+	height: 38px;
+	position: absolute;
+	border: 1px solid #FFF; /*placeholder color*/
+	color: #FFF; /*placeholder*/
+	background-color: rgba(0,0,0,0.5); /*placeholder*/
+	text-align: center;
+	font-size: 15px;
+	line-height: 15px;
+	font-family: "Proxima N W02 Bold";
+	display: inline-block;
+	pointer-events: auto;
+	visibility: hidden;
+	bottom:0px; 
+}
+
+
+#disclaimer {
+    width: 100%;
+    max-width: 398px;
+    height: 25px;
+    position: absolute;
+    bottom: 51px;
+	font-family: "Proxima N W02 Bold";
+	font-size: 13px;
+    line-height: 16px;
+}
+
+#bodyCopy {
+    width: 100%;
+    max-width: 398px;
+    height: 25px;
+    position: absolute;
+    top: 245px;
+	font-family: "Proxima N W02 Bold";
+	font-size: 13px;
+    line-height: 16px;
+}
+
+
+
+.ctaCopy{
+	padding: 0px 14px;
+}
+
+/* -------------------- */
+/* -----> SHARED <----- */
+/* -------------------- */
+.genClk{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+
+/* ------------------------------- */
+/* -----> SHARED ANIMATIONS <----- */
+/* ------------------------------- */
+.
+@-webkit-keyframes moveOnStageFadeIn{
+	0%{
+		opacity: 0;
+
+		-webkit-transform: translateX(-9999px);
+		transform: translateX(-9999px);
+	}
+	0.1%{
+		opacity: 0;
+
+		-webkit-transform: translateX(0px);
+		transform: translateX(0px);
+	}
+	100%{
+		opacity: 1;
+
+		-webkit-transform: translateX(0px);
+		transform: translateX(0px);
+	}
+}
+@keyFrames moveOnStageFadeIn{
+	0%{
+		opacity: 0;
+
+		-webkit-transform: translateX(-9999px);
+		transform: translateX(-9999px);
+	}
+	0.1%{
+		opacity: 0;
+
+		-webkit-transform: translateX(0px);
+		transform: translateX(0px);
+	}
+	100%{
+		opacity: 1;
+
+		-webkit-transform: translateX(0px);
+		transform: translateX(0px);
+	}
+}
+
+@-webkit-keyframes fadeOutMoveOffStage{
+	0%{
+		opacity: 1;
+
+		-webkit-transform: translateX(0px);
+		transform: translateX(0px);
+	}
+	99.9%{
+		opacity: 0;
+
+		-webkit-transform: translateX(0px);
+		transform: translateX(0px);
+	}
+	100%{
+		opacity: 0;
+
+		-webkit-transform: translateX(-9999px);
+		transform: translateX(-9999px);
+	}
+}
+@keyFrames fadeOutMoveOffStage{
+	0%{
+		opacity: 1;
+
+		-webkit-transform: translateX(0px);
+		transform: translateX(0px);
+	}
+	99.9%{
+		opacity: 0;
+
+		-webkit-transform: translateX(0px);
+		transform: translateX(0px);
+	}
+	100%{
+		opacity: 0;
+
+		-webkit-transform: translateX(-9999px);
+		transform: translateX(-9999px);
+	}
+}
+
+
+/*---------------------------------------*/
+/*-----> MEDIA QUERY SIZING STYLES <-----*/
+/*---------------------------------------*/
+
+/* -----> MEDIA QUERIES - SET ALL BREAK POINTS AND CREATIVE ADJUSTMENTS HERE<----- */
+@media(min-width: 0px) and (max-width: 975px){
+	/* ------------------------ */
+	/* -----> IMAGE AREA <----- */
+	/* ------------------------ */
+	#imageAreaContainer{
+		width: 100%;
+	}
+
+	/* -------------------------- */
+	/* -----> CONTENT AREA <----- */
+	/* -------------------------- */
+	#contentAreaContainer{
+		width: 100%;
+		left: 0px;
+
+		background: -moz-linear-gradient(bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 60%, rgba(0,0,0,0) 60%, rgba(0,0,0,0) 100%);
+		background: -webkit-linear-gradient(bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 60%, rgba(0,0,0,0) 60%, rgba(0,0,0,0) 100%);
+		background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 60%, rgba(0,0,0,0) 60%, rgba(0,0,0,0) 100%);
+	}
+
+	/* -----> CONTENT AREA - COPY <----- */
+	#contentAreaCopy{
+		/* max-width: 470px; */
+		position: absolute;
+		bottom: 55px;
+	}
+
+	#contentAreaHeadlineCopy{
+		font-family: "Proxima N W02 Smbd";
+		font-size: 24px;
+		line-height: 25px;
+		padding-top: 0px;
+		color: #fff !important;
+	}
+
+	#contentAreaDescriptorCopy{
+		font-family: "Proxima N W01 Reg";
+		font-size: 18px;
+		line-height: 25px;
+		padding-top: 10px;
+		color: #fff !important;
+	}
+
+	.logo{
+		bottom: inherit;
+		top: 0;
+	}
+
+	#contentAreaCta{
+		bottom: 0;
+		color: #fff !important;
+		border-color: #fff !important;
+	}
+
+	#pagination{
+		color: #fff;
+	}
+}
+
+</style>
+
+<div id="adWrapper">
+    <div id="adContainer">
+		<div id="imageAreaContainer">
+			<div id="imageAreaBg"></div>
+			<div class="imageAreaGrad"></div>
+			<div class="genClk"></div>
+		</div>
+		<div id="contentAreaContainer">
+			<div class="genClk"></div>
+			<div id="contentAreaPadBox">
+				<div id="contentAreaLogo" class="logo">
+					<img src="">
+				</div>
+				<div id="contentAreaCopy">
+					<div id="contentAreaHeadlineCopy"></div>
+					<div id="contentAreaDescriptorCopy"></div>
+					<div id="price">Price Here</div>
+				</div>
+
+				<div id="disclaimer"></div>
+				<div id="bodyCopy"></div>
+				<div id="contentAreaCta" class="cta">
+		        	<div id="contentAreaCtaCopy" class="ctaCopy"></div>
+					</div>
+					<div id="pagination">
+					</div>
+			</div>
+		</div>
+		<!--BORDER-->
+		<div class='borderTop contentBorder'></div>
+	    <div class='borderLeft contentBorder'></div>
+	    <div class='borderRight contentBorder'></div>
+	    <div class='borderBottom contentBorder'></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+// WIRECUTTER Api Request/parseing JSON
+axios({
+    //url: 'shttps://dog.ceo/api/breeds/list/all',
+	url: 'https://storage.googleapis.com/nyt-ads-static-assets/ads/adplatforms/HD_Source_150080.json',
+    method: 'get',
+})
+
+;(async () => {
+  let response = await axios({
+ // url: 'https://dog.ceo/api/breeds/list/all',
+ url: 'https://storage.googleapis.com/nyt-ads-static-assets/ads/adplatforms/HD_Source_150080.json',
+  method: 'get',  
+  })
+
+var x = response.data["data"][0]["attributes"]["price"]["raw_formatted"];
+  console.log(response.data["data"][0]["attributes"]["price"]["raw_formatted"]);
+     document.getElementById("price").innerHTML = x;
+
+})()
+
+/*------------------------*/
+/*-----> VARIABLES  <-----*/
+/*------------------------*/
+var creativeId = "HTMLResponsiveRichMediaBanner";
+var creativeVersion = "1.1.0";
+var lastModified = "2017-02-07";
+var lastUploaded = "2017-02-07";
+var templateVersion = "2.0.24";
+var templateName = "cf_deluxe_banner_flex_frame_shopping_1x1_" + creativeVersion + "_6266"; // cf_[format_name]_[template_name]_[wxh]_version_BlockID
+var scrollPos = {x:undefined, y:undefined};
+var adId, rnd, uid, versionID;
+
+/*-----> BROWSER DETECTION VARS <-----*/
+var isMobile = (/Mobi/i).test(navigator.userAgent);
+var isIOS = (/iPhone|iPad|iPod/i).test(navigator.userAgent);
+var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+var isIE = (/MSIE/).test(navigator.userAgent) || ((navigator.appName == "Netscape") && (/Trident/).test(navigator.userAgent));
+var isEdge = (/Edge/).test(navigator.userAgent);
+var isAndroidTablet = ( (/Android/).test(navigator.userAgent) && (/Chrome\/[.0-9]* (?!Mobile)/).test(navigator.userAgent) );
+
+
+/*-----> VIEWABILITY VARS <-----*/
+var isInView = null; // isInView will only be set to true/false when visibility data is being collected.  Leave null when not in use.
+var ctaElemAry = [];
+var logoElemAry = [];
+var elemsAnimatingArray = [];
+
+/*------------------------------*/
+/*-----> TEMPLATE CONFIG  <-----*/
+/*------------------------------*/
+var creativeConfigObj = {
+	// Creative content boarder color.
+	// Boarder is one pixel.
+	// Boarder will only display if a color value is listed.
+	boarderColor: null,
+
+    // Images will be set to cover stretched/cropped as required.
+    // Images will anchor to the center point of the image area.
+	backgroundImageURL: "images/bg.png",
+
+	logo: {
+		logoImgURL: "images/logo.png"
+	},
+
+	copy: {
+		headline: {
+			copy: "Headline Goes Here",
+			color: "white"
+		},
+		description: {
+			copy: "Description Goes Here",
+			color: "white"
+		},
+
+		disclaimer: {
+        	copy: "This is the disclamer",
+        	color: "white"
+       },
+
+	    bodyCopy: {
+        	copy: "This is the Body",
+        	color: "white"
+       }
+	},
+
+	cta: {
+		copy: "FIND OUT MORE",
+		copyColor: "white",
+		borderColor: "white",
+		bgColor: "transparent"
+	},
+
+	
+// Please leave below code as is 
+video:{aspectRatio:"1:1",srcURL:"videos/1x1_Ex.mp4",backgroundColor:null,controlsColor:null,controlsBackgroundColor:null,autoPlay:!1,thirdPartyQuartileTrackingPxls:{start:{pxl:""},q1:{pxl:""},q2:{pxl:""},q3:{pxl:""},complete:{pxl:""}}}
+}
+/*-----> END TEMPLATE CONFIG  <-----*/
+
+/*----------------------------*/
+/*-----> INITIALIZATION <-----*/
+/*----------------------------*/
+function checkIfAdKitReady(event) {
+    try {
+		if (window.localPreview) {
+			adkit.onReady(function() {
+				window.initializeLocalPreview(); // In localPreview.js
+				initializeCreative();
+			});
+			return;
+		} else {
+			window.localPreview = false;
+		}
+	} catch (e) {
+		window.localPreview = false;
+	}
+
+	// below comment by MSD
+	// adkit.onReady(initializeCreative);
+
+	// START ADD BY MSD
+	if (window.adkit) {
+		adkit.onReady(initializeCreative);
+	} else {
+		initializeCreative();
+	}
+	// END ADD BY MSD
+}
+
+function initializeCreative() {
+	var viewportMeta = document.querySelector('meta[name="viewport"]');
+    viewportMeta.setAttribute("content", "width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0");
+
+    window.setTimeout(function(e){
+        viewportMeta.setAttribute("content", "width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=0");
+    }, 500);
+
+	// Workaround (from QB6573) for Async EB Load where Modernizr isn't properly initialized
+	typeof Modernizr == "object" && (Modernizr.touch = Modernizr.touch || "ontouchstart" in window);
+
+	EBG.pm.bind("sendCreativeId", function() {
+		eventManager.apply(this, arguments);
+	}, this);
+	EBG.pm.bind("eventCallback", function() {
+		eventManager.apply(this, arguments);
+	}, this);
+
+    initializeGlobalVariables();
+    setCreativeVersion();
+
+	//-->
+
+    setCreativeElements();
+    positionCreativeElements();
+    addEventListeners();
+
+    window.setTimeout(function(e){
+        document.getElementById("adWrapper").style.visibility = "visible";
+        document.getElementById("adWrapper").style.opacity = "1";
+    }, 250);
+}
+
+function initializeGlobalVariables() {
+	adId = EB._adConfig.adId;
+	rnd = EB._adConfig.rnd;
+	uid = EB._adConfig.uid;
+
+	ctaElemAry = document.getElementsByClassName("cta");
+	logoElemAry = document.getElementsByClassName("logo");
+}
+
+/*-----------------------*/
+/*-----> FUNCTIONS <-----*/
+/*-----------------------*/
+
+/*-----> SET UP <-----*/
+
+function setCreativeElements(){
+// 	if (isIOS) {
+// 		centerWebkitVideoControls();
+// 	}
+
+	if (creativeConfigObj.boarderColor !== "" && creativeConfigObj.boarderColor !== null) {
+		setBorders();
+	}
+
+	if (creativeConfigObj.video.srcURL !== "" && creativeConfigObj.video.srcURL !== null) {
+		setBg();
+	}
+
+	if (creativeConfigObj.logo.logoImgURL !== "" && creativeConfigObj.logo.logoImgURL !== null) {
+		setLogo();
+	}
+
+	if (creativeConfigObj.cta.copy !== "" && creativeConfigObj.cta.copy !== null) {
+		setCta();
+	}else{
+		for(var i=0; i<ctaElemAry.length; i++){
+			ctaElemAry[i].style.display = "none";
+		}
+	}
+
+	if (creativeConfigObj.copy.headline.copy !== "" && creativeConfigObj.copy.headline.copy !== null) {
+		setHeadline();
+	}
+
+	if (creativeConfigObj.copy.description.copy !== "" && creativeConfigObj.copy.description.copy !== null) {
+		setDescriptor();
+	}
+
+    // d added 
+    if (creativeConfigObj.copy.disclaimer.copy !== "" && creativeConfigObj.copy.disclaimer.copy !== null) {
+		setDisclaimer();
+	}
+
+	  // d added 
+    if (creativeConfigObj.copy.bodyCopy.copy !== "" && creativeConfigObj.copy.bodyCopy.copy !== null) {
+		setBodyCopy();
+	}
+}
+
+function setBorders(){
+	var contentBorders = document.getElementsByClassName("contentBorder");
+
+	for (var i = 0; i < contentBorders.length; i++) {
+		contentBorders[i].style.display = "block";
+		contentBorders[i].style.backgroundColor = creativeConfigObj.boarderColor;
+	}
+}
+
+function setBg(){
+	document.getElementById("imageAreaBg").style.backgroundImage = "url(" + creativeConfigObj.backgroundImageURL + ")";
+}
+
+function setLogo(){
+	for(var i=0; i<logoElemAry.length; i++){
+		logoElemAry[i].getElementsByTagName("img")[0].src = creativeConfigObj.logo.logoImgURL;
+		logoElemAry[i].style.display = "block";
+	}
+}
+
+function setCta(){
+	var setCopyColorFlag = (creativeConfigObj.cta.color !== "" && creativeConfigObj.cta.color !== null);
+	var setBorderColorFlag = (creativeConfigObj.cta.borderColor !== "" && creativeConfigObj.cta.borderColor !== null);
+	var setBgColorFlag = (creativeConfigObj.cta.bgColor !== "" && creativeConfigObj.cta.bgColor !== null);
+
+
+	for(var i=0; i<ctaElemAry.length; i++){
+		if (setCopyColorFlag === true) {
+			ctaElemAry[i].style.color = creativeConfigObj.cta.copyColor;
+		}
+
+		if (setBorderColorFlag === true) {
+			ctaElemAry[i].style.borderColor = creativeConfigObj.cta.borderColor;
+		}
+
+		if (setBgColorFlag === true) {
+			ctaElemAry[i].style.backgroundColor = creativeConfigObj.cta.bgColor;
+		}
+
+		ctaElemAry[i].firstElementChild.innerHTML = creativeConfigObj.cta.copy;
+	}
+}
+
+function setHeadline(){
+	document.getElementById("contentAreaHeadlineCopy").innerHTML = creativeConfigObj.copy.headline.copy;
+
+	if (creativeConfigObj.copy.headline.color !== "" && creativeConfigObj.copy.headline.color !== null) {
+		document.getElementById("contentAreaHeadlineCopy").style.color = creativeConfigObj.copy.headline.color;
+	}
+
+	document.getElementById("contentAreaHeadlineCopy").style.display = "block";
+}
+
+function setDescriptor(){
+	document.getElementById("contentAreaDescriptorCopy").innerHTML = creativeConfigObj.copy.description.copy;
+
+	if (creativeConfigObj.copy.description.color !== "" && creativeConfigObj.copy.description.color !== null) {
+		document.getElementById("contentAreaDescriptorCopy").style.color = creativeConfigObj.copy.description.color;
+	}
+
+	document.getElementById("contentAreaDescriptorCopy").style.display = "block";
+}
+
+
+// code added for disclaimer 
+function setDisclaimer(){
+	document.getElementById("disclaimer").innerHTML = creativeConfigObj.copy.disclaimer.copy;
+
+	if (creativeConfigObj.copy.disclaimer.color !== "" && creativeConfigObj.copy.disclaimer.color !== null) {
+		document.getElementById("disclaimer").style.color = creativeConfigObj.copy.disclaimer.color;
+	}
+
+	document.getElementById("disclaimer").style.display = "block";
+}
+
+// code added for bodyCopy 
+function setBodyCopy(){
+	document.getElementById("bodyCopy").innerHTML = creativeConfigObj.copy.bodyCopy.copy;
+
+	if (creativeConfigObj.copy.bodyCopy.color !== "" && creativeConfigObj.copy.bodyCopy.color !== null) {
+		document.getElementById("bodyCopy").style.color = creativeConfigObj.copy.bodyCopy.color;
+	}
+
+	document.getElementById("bodyCopy").style.display = "block";
+}
+
+function set(){
+	document.getElementById("contentAreaDescriptorCopy").innerHTML = creativeConfigObj.copy.description.copy;
+
+	if (creativeConfigObj.copy.description.color !== "" && creativeConfigObj.copy.description.color !== null) {
+		document.getElementById("contentAreaDescriptorCopy").style.color = creativeConfigObj.copy.description.color;
+	}
+
+	document.getElementById("contentAreaDescriptorCopy").style.display = "block";
+}
+
+
+function positionCreativeElements(){
+	if (creativeConfigObj.cta.copy !== "" && creativeConfigObj.cta.copy !== null) {
+		verticalyAlignTextByClass("ctaCopy");
+	}
+}
+
+function addEventListeners(){
+	// Track all elements that have started but not completed animating via a keyframe animation
+
+	// Add to array when keyframe animation starts
+	document.addEventListener("webkitAnimationStart", function(e){
+		addElemToAnimTrackingAry(e.target);
+	}, false);
+	document.addEventListener("animationstart", function(e){
+		addElemToAnimTrackingAry(e.target);
+	}, false);
+
+	// Remove from array when keyframe animation ends
+	document.addEventListener("webkitAnimationEnd", function(e){
+		addElemToAnimTrackingAry(e.target);
+	}, false);
+	document.addEventListener("animationend", function(e){
+		removeElemFromAnimTrackingAry(e.target);
+	}, false);
+
+	document.getElementById("contentAreaHeadlineCopy").addEventListener("click", onMessagingClk, false);
+	document.getElementById("contentAreaDescriptorCopy").addEventListener("click", onMessagingClk, false);
+
+    for(var i=0; i<logoElemAry.length; i++){
+        logoElemAry[i].addEventListener("click", onLogoClk, false);
+    }
+
+    for(var i=0; i<ctaElemAry.length; i++){
+        ctaElemAry[i].addEventListener("click", onCtaClk, false);
+    }
+
+    var bgClks = document.getElementsByClassName("genClk");
+    for(var i=0; i<bgClks.length; i++){
+        bgClks[i].addEventListener("click", onBgClk, false);
+    }
+}
+
+function addViewabilityListener(){
+	EB.addEventListener(EBG.EventName.VISIBILITY, onVisibilityUpdate);
+}
+
+function removeViewabilityListener(){
+	EB.removeEventListener(EBG.EventName.VISIBILITY, onVisibilityUpdate);
+}
+
+function addElemToAnimTrackingAry(elm){
+	if(elemsAnimatingArray.indexOf(elm) === -1){
+		elemsAnimatingArray.push(elm);
+	}
+}
+
+function removeElemFromAnimTrackingAry(elm){
+	if(elemsAnimatingArray.indexOf(elm) !== -1){
+		removeArryElem(elemsAnimatingArray, elm);
+	}
+}
+
+function fastCompleteAllActiveCSSAnim(){
+	for(var i=0; i<elemsAnimatingArray.length; i++){
+		fastCompleteCSSAnim(elemsAnimatingArray[i]);
+	}
+}
+
+/*-----> CLICK OUTS <-----*/
+function onCtaClk(e) {
+	var dt = 50;
+
+	if(isIE === true || isEdge === true){
+		fastCompleteAllActiveCSSAnim();
+		EB.clickthrough('CTA_Click');
+	}else{
+		window.setTimeout(function(e){
+			fastCompleteAllActiveCSSAnim();
+			EB.clickthrough('CTA_Click');
+		}, dt);
+	}
+}
+
+function onLogoClk(e) {
+	var dt = 50;
+
+	if(isIE === true || isEdge === true){
+		fastCompleteAllActiveCSSAnim();
+		EB.clickthrough('Logo_Click');
+	}else{
+		window.setTimeout(function(e){
+			fastCompleteAllActiveCSSAnim();
+			EB.clickthrough('Logo_Click');
+		}, dt);
+	}
+}
+
+function onMessagingClk(e) {
+	var dt = 50;
+
+
+
+	if(isIE === true || isEdge === true){
+		fastCompleteAllActiveCSSAnim();
+		EB.clickthrough('Messaging_Click');
+	}else{
+		window.setTimeout(function(e){
+			fastCompleteAllActiveCSSAnim();
+			EB.clickthrough('Messaging_Click');
+		}, dt);
+	}
+}
+
+function onBgClk(e) {
+	var dt = 50;
+
+
+	if(isIE === true || isEdge === true){
+		fastCompleteAllActiveCSSAnim();
+		EB.clickthrough("Background_Click");
+	}else{
+		window.setTimeout(function(e){
+			fastCompleteAllActiveCSSAnim();
+			EB.clickthrough("Background_Click");
+		}, dt);
+	}
+}
+
+
+/*------------------------------*/
+/*-----> HELPER FUNCTIONS <-----*/
+/*------------------------------*/
+// Items must be on stage prior to being passed to this function for proper alignemnt
+function verticalyAlignText(obj){
+	var parentContainerHeight 	= obj.parentNode.offsetHeight;
+	var copyContainerHeight		= obj.offsetHeight;
+	var pushMargin				= Math.floor((parentContainerHeight-copyContainerHeight)/2) + 'px';
+
+	obj.style.marginTop = pushMargin;
+}
+
+// Items must be on stage prior to being passed to this function for proper alignemnt
+function verticalyAlignTextByClass(cls){
+	var clsArry = document.getElementsByClassName(cls);
+
+	for(var i=0; i<clsArry.length; i++){
+		verticalyAlignText(clsArry[i]);
+	}
+}
+
+function moveOnStageFadeIn(arg) {
+	for (var i = 0; i < arguments.length; i++) {
+		arguments[i].style.WebkitAnimation = "moveOnStageFadeIn .25s ease forwards";
+		arguments[i].style.animation = "moveOnStageFadeIn .25s ease forwards";
+	}
+}
+
+function fadeOutMoveOffStage(arg) {
+	for (var i = 0; i < arguments.length; i++) {
+		arguments[i].style.WebkitAnimation = "fadeOutMoveOffStage .25s ease forwards";
+		arguments[i].style.animation = "fadeOutMoveOffStage .25s ease forwards";
+	}
+}
+
+function fastCompleteCSSAnim(arg) {
+	for (var i = 0; i < arguments.length; i++) {
+		arguments[i].style.WebkitAnimationDelay = "1ms";
+		arguments[i].style.animationDelay = "1ms";
+
+		arguments[i].style.WebkitAnimationDuration = "1ms";
+		arguments[i].style.animationDuration = "1ms";
+	}
+}
+
+function removeArryElem(ary, elm){
+	var index = ary.indexOf(elm);
+
+	if(index !== -1){
+		ary.splice(index, 1);
+	}
+}
+
+function fire1x1Pixel(src) {
+	// Fire 3rd party tracking pixels only when live.
+	//
+	if (localPreview === false) {
+		var pixel = new Image();
+		pixel.src = src;
+	} else {
+		console.log("" + src);
+	}
+}
+
+/*------------------------------*/
+/*-----> BASE FORMAT CODE <-----*/
+/*------------------------------*/
+/*******************
+UTILITIES
+*******************/
+function setCreativeVersion() {
+	sendMessage("setCreativeVersion", {
+		creativeId: creativeId + " - " + templateName,
+		creativeVersion: creativeVersion,
+		creativeLastModified: lastModified,
+		uid: uid
+	});
+}
+
+function onPageScroll(event) {
+	// use scrollPos anywhere to know the current x/y coordinates.
+	scrollPos.x = event.scrollXPercent;
+	scrollPos.y = event.scrollYPercent;
+}
+
+/*********************************
+HTML5 Event System - Do Not Modify
+*********************************/
+var listenerQueue;
+var creativeIFrameId;
+
+function sendMessage(type, data) {
+	//note: the message type we're sending is also the name of the function inside
+	//		the custom script's messageHandlers object, so the case must match.
+
+	if (!data.type) data.type = type;
+	EB._sendMessage(type, data);
+}
+
+function addCustomScriptEventListener(eventName, callback, interAd) {
+	listenerQueue = listenerQueue || {};
+	var data = {
+		uid: uid,
+		listenerId: Math.ceil(Math.random() * 1000000000),
+		eventName: eventName,
+		interAd: !!(interAd),
+		creativeIFrameId: creativeIFrameId
+	};
+	sendMessage("addCustomScriptEventListener", data);
+	data.callback = callback;
+	listenerQueue[data.listenerId] = data;
+	return data.listenerId;
+}
+
+function dispatchCustomScriptEvent(eventName, params) {
+	params = params || {};
+	params.uid = uid;
+	params.eventName = eventName;
+	params.creativeIFrameId = creativeIFrameId;
+	sendMessage("dispatchCustomScriptEvent", params);
+}
+
+function removeCustomScriptEventListener(listenerId) {
+	var params = {
+		uid: uid,
+		listenerId: listenerId,
+		creativeIFrameId: creativeIFrameId
+	};
+
+	sendMessage("removeCustomScriptEventListener", params);
+	if (listenerQueue[listenerId])
+		delete listenerQueue[listenerId];
+}
+
+function eventManager(event) {
+	var msg;
+
+	if (typeof event == "object" && event.data) {
+		msg = JSON.parse(event.data);
+
+	} else {
+		// this is safe frame.
+		msg = {
+			type: event.type,
+			data: event
+		};
+	}
+	if (msg.type && msg.data && (!uid || (msg.data.uid && msg.data.uid == uid))) {
+		switch (msg.type) {
+			case "sendCreativeId":
+				creativeIFrameId = msg.data.creativeIFrameId;
+				addCustomScriptEventListener('pageScroll', onPageScroll);
+				sendMessage("dispatchScrollPos", {
+					uid: uid
+				});
+				if (creativeContainerReady)
+					creativeContainerReady();
+				break;
+			case "eventCallback": // Handle Callback
+				var list = msg.data.listenerIds;
+				var length = list.length;
+				for (var i = 0; i < length; i++) {
+					try {
+						var t = listenerQueue[list[i]];
+						if (!t) continue;
+						t.callback(msg.data);
+					} catch (e) {}
+				}
+				break;
+		}
+	}
+}
+
+// NOTE: The message listener below, and more importantly eventManager portion, have
+//		 been commented out as the calls to the eventManager function are being pushed
+//		 in via the 2 bindings to EGB.pm, as seen in the initializeCreative function.
+//		 When the below was left in the code, while serving in MRAID, two calls per
+//		 event were being received.  With the below removed all environments now
+//		 receive only a single call per event.
+//		 This commented out code was not deleted to avoid accidental addition back
+//		 into the code by one not familiar with the template since it is boilerplate
+//		 code for the base custom format.
+// window.addEventListener("message", function() {
+// 	try {
+// 		eventManager.apply(this, arguments);
+// 	} catch (e) {}
+// }, false);
+
+/*************************************
+End HTML5 Event System - Do Not Modify
+*************************************/
+
+window.addEventListener("load", checkIfAdKitReady);
+
+</script>
+
+</body>
+</html>
