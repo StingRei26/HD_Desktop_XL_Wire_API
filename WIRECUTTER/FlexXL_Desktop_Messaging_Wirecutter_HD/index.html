@@ -121,7 +121,7 @@ body{
 	position: absolute;
 	top: 0px;
 	left: 600px;
-	background: black;
+	background: white;
 }
 
 #contentAreaPadBox{
@@ -233,10 +233,19 @@ body{
 }
 .logo img{
 	width: auto;
-    height: 46px;
+    height: 60px;
     max-height: 70px;
     max-width: 145px;
 }
+
+	#wirelogo {
+    position: absolute;
+    z-index: 2;
+    bottom: 35px;
+	width:248px; 
+	height:108px;
+	left:21px;
+	}
 
 .cta{
 	width: auto;
@@ -437,6 +446,7 @@ body{
 		top: 0;
 	}
 
+
 	#contentAreaCta{
 		bottom: 0;
 		color: #fff !important;
@@ -453,6 +463,7 @@ body{
 <div id="adWrapper">
     <div id="adContainer">
 		<div id="imageAreaContainer">
+			<div id="wirelogo"> <img src="images/logowirecutter.png"></div>
 			<div id="imageAreaBg"></div>
 			<div class="imageAreaGrad"></div>
 			<div class="genClk"></div>
@@ -546,30 +557,30 @@ var creativeConfigObj = {
 
     // Images will be set to cover stretched/cropped as required.
     // Images will anchor to the center point of the image area.
-	backgroundImageURL: "images/bg.png",
+	backgroundImageURL: "images/HDimage.png",
 
 	logo: {
-		logoImgURL: "images/logo.png"
+		logoImgURL: "images/logohomedepot.png"
 	},
 
 	copy: {
 		headline: {
 			copy: "Headline Goes Here",
-			color: "white"
+			color: "black"
 		},
 		description: {
 			copy: "Description Goes Here",
-			color: "white"
+			color: "black"
 		},
 
 		disclaimer: {
         	copy: "This is the disclamer",
-        	color: "white"
+        	color: "black"
        },
 
 	    bodyCopy: {
         	copy: "This is the Body",
-        	color: "white"
+        	color: "black"
        }
 	},
 
@@ -577,7 +588,7 @@ var creativeConfigObj = {
 		copy: "FIND OUT MORE",
 		copyColor: "white",
 		borderColor: "white",
-		bgColor: "transparent"
+		bgColor: "black"
 	},
 
 	
