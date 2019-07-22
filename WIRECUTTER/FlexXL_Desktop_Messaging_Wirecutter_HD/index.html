@@ -9,7 +9,7 @@
 
 	<!-- COMMENT THIS LINE OUT PRIOR TO UPLOADING / UNCOMMENT FOR LOCAL TESTING ONLY -->
 <script type="text/javascript" src="scripts/localPreview.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
 
 </head>
 <body>
@@ -94,12 +94,13 @@ body{
 /* -----> IMAGE AREA <----- */
 /* ------------------------ */
 #imageAreaContainer{
-	width: 600px;
+	/*width: 600px;*/
 	height: 100%;
 	position: absolute;
 	top: 0px;
 	left: 0px;
 	background-color: #909090;
+	width: calc(100% - 525px);
 }
 
 #imageAreaBg{
@@ -116,11 +117,11 @@ body{
 /* -----> CONTENT AREA <----- */
 /* -------------------------- */
 #contentAreaContainer{
-	width: calc(100% - 600px);
+	width: 525px;
 	height: 100%;
 	position: absolute;
 	top: 0px;
-	left: 600px;
+	left: calc(100% - 525px);
 	background: white;
 }
 
@@ -392,35 +393,35 @@ body{
 	}
 }
 
-
+/* HERE!!*/
 /*---------------------------------------*/
 /*-----> MEDIA QUERY SIZING STYLES <-----*/
 /*---------------------------------------*/
 
 /* -----> MEDIA QUERIES - SET ALL BREAK POINTS AND CREATIVE ADJUSTMENTS HERE<----- */
-@media(min-width: 0px) and (max-width: 975px){
+/*@media(min-width: 0px) and (max-width: 975px){*/
 	/* ------------------------ */
 	/* -----> IMAGE AREA <----- */
 	/* ------------------------ */
-	#imageAreaContainer{
+	/*#imageAreaContainer{
 		width: 100%;
-	}
+	}*/
 
 	/* -------------------------- */
 	/* -----> CONTENT AREA <----- */
 	/* -------------------------- */
-	#contentAreaContainer{
+	/*#contentAreaContainer{
 		width: 100%;
 		left: 0px;
 
 		background: -moz-linear-gradient(bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 60%, rgba(0,0,0,0) 60%, rgba(0,0,0,0) 100%);
 		background: -webkit-linear-gradient(bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 60%, rgba(0,0,0,0) 60%, rgba(0,0,0,0) 100%);
 		background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 60%, rgba(0,0,0,0) 60%, rgba(0,0,0,0) 100%);
-	}
+	}*/
 
 	/* -----> CONTENT AREA - COPY <----- */
-	#contentAreaCopy{
-		/* max-width: 470px; */
+	/*#contentAreaCopy{
+	
 		position: absolute;
 		bottom: 55px;
 	}
@@ -456,7 +457,78 @@ body{
 	#pagination{
 		color: #fff;
 	}
+}*/
+
+
+/* Media quary for tablet */
+
+
+@media (min-width: 0px) and (max-width: 900px){
+
+#imageAreaContainer {
+	width: 406px;
 }
+
+#wirelogo img {
+   width:174px;	
+}
+
+#wirelogo {
+  bottom: -8px;
+}
+
+
+#contentAreaContainer {
+	width:calc(100% - 335px);
+	right:0px;
+}
+
+
+}
+
+@media (min-width: 0px) and (max-width: 830px){ 
+
+#contentAreaContainer {
+	left: calc(117% - 525px);
+	width:500px;
+}
+
+#contentAreaHeadlineCopy {
+	font-size: 21px;
+}
+
+
+#contentAreaDescriptorCopy {
+	font-size: 16px;
+}
+
+#price {
+	font-size:15px;
+}
+
+
+#bodyCopy {
+font-size: 14px;
+    line-height: 18px;
+
+}
+
+#disclaimer {
+	font-size:11px;
+}
+
+
+
+}
+
+
+@media (min-width: 0px) and (max-width: 667px){ 
+#adContainer {
+	display: none;
+}
+}
+
+
 
 </style>
 
